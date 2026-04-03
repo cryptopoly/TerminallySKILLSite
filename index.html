@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TerminallySKILL - A Professional Terminal Workspace for Engineers</title>
+  <meta name="description" content="TerminallySKILL is a professional terminal workspace with visual command builder, workflow automation, AI tools, SSH, VNC remote desktop, and more. Available for macOS, Linux, and Windows.">
+  <meta name="keywords" content="terminal, command line, CLI, workflow automation, SSH, VNC, AI terminal, developer tools, command builder, desktop app, Electron, xterm, node-pty">
+  <meta name="author" content="CryptoRaptor">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://terminallyskill.com/">
+  <meta name="theme-color" content="#06b6d4">
+  <link rel="icon" type="image/png" href="favicon.png">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="TerminallySKILL - A Professional Terminal Workspace">
+  <meta property="og:description" content="Visual command builder, workflow automation, AI-powered tools, SSH & VNC remote desktop. Built for engineers who move fast.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://terminallyskill.com/">
+  <meta property="og:site_name" content="TerminallySKILL">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:image" content="https://terminallyskill.com/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="TerminallySKILL - A professional terminal workspace for engineers who move fast">
+
+  <!-- Twitter / X Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@Cryptopoly">
+  <meta name="twitter:creator" content="@Cryptopoly">
+  <meta name="twitter:title" content="TerminallySKILL - A Professional Terminal Workspace">
+  <meta name="twitter:description" content="Visual command builder, workflow automation, AI-powered tools, SSH & VNC remote desktop. Built for engineers who move fast.">
+  <meta name="twitter:image" content="https://terminallyskill.com/og-image.png">
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "TerminallySKILL",
+    "url": "https://terminallyskill.com",
+    "description": "A professional terminal workspace with visual command builder, workflow automation, AI-powered tools, SSH, and encrypted VNC remote desktop.",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "macOS, Linux, Windows",
+    "author": {
+      "@type": "Person",
+      "name": "CryptoRaptor",
+      "url": "https://x.com/Cryptopoly"
+    },
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "downloadUrl": "https://github.com/cryptopoly/TerminallySkill/releases",
+    "softwareVersion": "0.6.5",
+    "license": "https://github.com/cryptopoly/TerminallySkill/blob/main/LICENSE"
+  }
+  </script>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav" aria-label="Main navigation">
+    <div class="container nav-inner">
+      <a href="#" class="logo">
+        <img src="icon-64.png" alt="TerminallySKILL" class="logo-img">
+        <span>TerminallySKILL</span>
+      </a>
+      <div class="nav-links">
+        <a href="#features">Features</a>
+        <a href="#platforms">Platforms</a>
+        <a href="#support">Support</a>
+        <a href="https://github.com/cryptopoly/TerminallySkill" target="_blank" rel="noopener" class="nav-github" aria-label="GitHub">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+        </a>
+      </div>
+      <button class="nav-toggle" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="container">
+      <div class="hero-badge">Open Source Terminal Workspace</div>
+      <h1>A professional terminal workspace<br>for engineers who <span class="accent">move fast</span>.</h1>
+      <p class="hero-sub">Visual command builder, workflow automation, AI-powered tools, SSH &amp; encrypted VNC remote desktop &mdash; all in one desktop app.</p>
+      <div class="hero-actions">
+        <a href="https://github.com/cryptopoly/TerminallySkill/releases" class="btn btn-primary" target="_blank" rel="noopener">Download</a>
+        <a href="https://github.com/cryptopoly/TerminallySkill" class="btn btn-outline" target="_blank" rel="noopener">View on GitHub</a>
+      </div>
+      <div class="hero-platforms">Available for macOS, Linux &amp; Windows &mdash; Intel &amp; ARM</div>
+    </div>
+  </header>
+
+  <main>
+
+  <!-- FEATURES -->
+  <section id="features" class="features">
+    <div class="container">
+      <h2 class="section-title">Everything you need in one workspace</h2>
+      <p class="section-sub">Stop juggling terminals, scripts, and SSH sessions. TerminallySKILL brings it all together.</p>
+
+      <div class="feature-grid">
+
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
+          </div>
+          <h3>Visual Command Builder</h3>
+          <p>Auto-discovers every CLI tool on your PATH and presents them as form-based builders with flag selection, live preview, and zero syntax memorization.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+          </div>
+          <h3>Workflow Scripts</h3>
+          <p>Build multi-step automation with placeholder variables, approval checkpoints, retry logic, and per-step error handling. Share flows as <code>.tvflow</code> files.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          </div>
+          <h3>Full Terminal Sessions</h3>
+          <p>Powered by xterm.js with split panes, command queue, output snapshots with diff viewer, in-terminal regex search, and ghost suggestions.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a4 4 0 0 0-4 4v2H6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V10a2 2 0 0 0-2-2h-2V6a4 4 0 0 0-4-4z"/><circle cx="12" cy="15" r="1"/></svg>
+          </div>
+          <h3>SSH &amp; Encrypted VNC</h3>
+          <p>SSH key setup helper, interactive remote shells, and encrypted VNC remote desktop streaming through SSH tunnels &mdash; no firewall rules needed.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          </div>
+          <h3>AI-Powered Tools</h3>
+          <p>Command review, explain, natural language drafting, and output analysis. Supports OpenAI, Anthropic, Gemini, Groq, Mistral, Grok, DeepSeek, Ollama, LM Studio, and more.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+          </div>
+          <h3>Projects</h3>
+          <p>Organize work with named projects, each with their own working directory, environment variables, favorite commands, terminal sessions, and color badges.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+          </div>
+          <h3>Runs &amp; Logs</h3>
+          <p>Unified time-ordered log browser with full-text search, structured workflow run history, run comparison, and AI-powered log review.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+          </div>
+          <h3>Snippets &amp; Themes</h3>
+          <p>Reusable command templates with parameterized variables. 8 built-in themes (4 dark, 4 light) plus command palette, auto-updates, and full customization.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><polyline points="13 2 13 9 20 9"/><line x1="10" y1="13" x2="10" y2="13"/><line x1="10" y1="17" x2="10" y2="17"/><line x1="14" y1="13" x2="14" y2="13"/></svg>
+          </div>
+          <h3>File Browser</h3>
+          <p>Built-in directory viewer with syntax-highlighted file preview, line numbers, and quick navigation &mdash; no need to leave the workspace.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- PLATFORMS -->
+  <section id="platforms" class="platforms">
+    <div class="container">
+      <h2 class="section-title">Available everywhere you work</h2>
+      <div class="platform-grid">
+        <div class="platform-card">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+          <h3>macOS</h3>
+          <p>Universal .dmg<br>Apple Silicon &amp; Intel</p>
+        </div>
+        <div class="platform-card">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="currentColor"><path d="M20.581 19.049l-7.577-11.619c-.106-.164-.235-.28-.393-.348-.158-.068-.316-.073-.474-.013l-2.382 1.236c-.089.044-.161.115-.217.213-.055.098-.057.201-.004.31l3.32 8.245-5.437-3.652c-.128-.082-.258-.108-.392-.078-.134.031-.248.106-.342.226l-1.984 2.528c-.074.096-.094.202-.058.318.036.116.109.2.218.252l10.648 5.072c.129.061.252.057.372-.014.12-.07.2-.172.24-.304.04-.133.014-.266-.077-.4l-.684-1.052 5.22-.99c.125-.025.222-.096.29-.212.068-.116.068-.233-.001-.35l-1.058-1.616c-.074-.113-.178-.188-.313-.224-.135-.036-.265-.018-.393.054l-3.305 1.87-1.97-4.892 5.685 1.303c.127.028.247.002.36-.078.113-.081.182-.192.207-.333l.192-1.056c.022-.129-.007-.253-.088-.372-.081-.119-.189-.196-.325-.232z"/></svg>
+          <h3>Linux</h3>
+          <p>AppImage &amp; .deb<br>x64 &amp; ARM64</p>
+        </div>
+        <div class="platform-card platform-wip">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="currentColor"><path d="M0 3.449L9.75 2.1v9.451H0m10.949-9.602L24 0v11.4H10.949M0 12.6h9.75v9.451L0 20.699M10.949 12.6H24V24l-12.9-1.801"/></svg>
+          <h3>Windows <span class="wip-badge">WIP</span></h3>
+          <p>NSIS Installer<br>x64 &amp; ARM64</p>
+          <p class="wip-note">Experimental &mdash; some features may not work as expected yet.</p>
+        </div>
+      </div>
+      <div class="platform-cta">
+        <a href="https://github.com/cryptopoly/TerminallySkill/releases" class="btn btn-primary" target="_blank" rel="noopener">Download Latest Release</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- AI PROVIDERS -->
+  <section class="ai-section">
+    <div class="container">
+      <h2 class="section-title">Bring your own AI</h2>
+      <p class="section-sub">Use your preferred AI provider or run models locally. No vendor lock-in.</p>
+      <div class="provider-list">
+        <span>OpenAI</span>
+        <span>Anthropic</span>
+        <span>Google Gemini</span>
+        <span>Groq</span>
+        <span>Mistral</span>
+        <span>xAI (Grok)</span>
+        <span>DeepSeek</span>
+        <span>OpenRouter</span>
+        <span>Together.ai</span>
+        <span>Fireworks.ai</span>
+        <span>Ollama</span>
+        <span>LM Studio</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- SUPPORT / DONATE -->
+  <section id="support" class="support">
+    <div class="container">
+      <h2 class="section-title">Support the project</h2>
+      <p class="section-sub">TerminallySKILL is built with passion. If you find it useful, consider supporting development.</p>
+
+      <div class="donate-grid">
+
+        <a href="https://buymeacoffee.com/cryptoraptor" target="_blank" rel="noopener" class="donate-card donate-coffee">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M2 21h18v-2H2M20 8h-1V5a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v8a4 4 0 0 0 4 4h6a4 4 0 0 0 4-4v-1h3a3 3 0 0 0 3-3 3 3 0 0 0-3-3m-3 5a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6h12m3-1a1 1 0 0 1 1 1 1 1 0 0 1-1 1h-1V8h1z"/></svg>
+          <h3>Buy Me a Coffee</h3>
+          <p>A quick way to show your support</p>
+        </a>
+
+        <a href="https://www.paypal.com/donate/?hosted_button_id=5VJ5KLNBQ9LRN" target="_blank" rel="noopener" class="donate-card donate-paypal">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M7.076 21.337H2.47a.641.641 0 0 1-.633-.74L4.944 3.72a.774.774 0 0 1 .763-.658h6.568c2.692 0 4.413 1.42 3.87 4.373-.601 3.272-2.756 5.088-5.978 5.088H8.03l-1.1 8.814h.145zM19.07 9.215c0 .535-.064 1.095-.203 1.68-.915 3.846-3.665 5.768-7.104 5.768h-.96l-1.032 6.527a.38.38 0 0 1-.373.32H6.94l-.07.437a.421.421 0 0 0 .415.487h2.942a.65.65 0 0 0 .642-.548l.854-5.414h1.586c3.6 0 6.276-2.196 7.042-5.966.37-1.818.115-3.291-.682-4.291z"/></svg>
+          <h3>PayPal</h3>
+          <p>Send a one-time or recurring donation</p>
+        </a>
+
+      </div>
+
+      <!-- CRYPTO -->
+      <div class="crypto-section">
+        <h3 class="crypto-title">Donate with Crypto</h3>
+        <div class="crypto-grid">
+
+          <div class="crypto-card">
+            <div class="crypto-card-top">
+              <div class="crypto-name">Bitcoin (BTC)</div>
+              <button class="copy-btn" onclick="copyAddr('btc-addr')">Copy</button>
+            </div>
+            <canvas class="qr-canvas" data-addr="bitcoin:bc1qkyx3h33fv7qfylt7d539av8c8wmyuw0lpq2c3v"></canvas>
+            <div class="crypto-addr" id="btc-addr">bc1qkyx3h33fv7qfylt7d539av8c8wmyuw0lpq2c3v</div>
+          </div>
+
+          <div class="crypto-card">
+            <div class="crypto-card-top">
+              <div class="crypto-name">Ethereum (ETH)</div>
+              <button class="copy-btn" onclick="copyAddr('eth-addr')">Copy</button>
+            </div>
+            <canvas class="qr-canvas" data-addr="ethereum:0xDbE181eefa5E17a564cb33d9B415fA2346cD535C"></canvas>
+            <div class="crypto-addr" id="eth-addr">0xDbE181eefa5E17a564cb33d9B415fA2346cD535C</div>
+          </div>
+
+          <div class="crypto-card">
+            <div class="crypto-card-top">
+              <div class="crypto-name">Solana (SOL)</div>
+              <button class="copy-btn" onclick="copyAddr('sol-addr')">Copy</button>
+            </div>
+            <canvas class="qr-canvas" data-addr="solana:CU4qWhipfJyRKYzoFft44ugoHtyr51n7q8Pz4qNx6Vsw"></canvas>
+            <div class="crypto-addr" id="sol-addr">CU4qWhipfJyRKYzoFft44ugoHtyr51n7q8Pz4qNx6Vsw</div>
+          </div>
+
+          <div class="crypto-card">
+            <div class="crypto-card-top">
+              <div class="crypto-name">Litecoin (LTC)</div>
+              <button class="copy-btn" onclick="copyAddr('ltc-addr')">Copy</button>
+            </div>
+            <canvas class="qr-canvas" data-addr="litecoin:ltc1qt7q5x6zunkza53nmpxfkcqvuwu6rsl6qmvzmer"></canvas>
+            <div class="crypto-addr" id="ltc-addr">ltc1qt7q5x6zunkza53nmpxfkcqvuwu6rsl6qmvzmer</div>
+          </div>
+
+          <div class="crypto-card">
+            <div class="crypto-card-top">
+              <div class="crypto-name">Dogecoin (DOGE)</div>
+              <button class="copy-btn" onclick="copyAddr('doge-addr')">Copy</button>
+            </div>
+            <canvas class="qr-canvas" data-addr="dogecoin:D6jhYrfBM85SjcyWeFgxzi55TYbA8Vsxt6"></canvas>
+            <div class="crypto-addr" id="doge-addr">D6jhYrfBM85SjcyWeFgxzi55TYbA8Vsxt6</div>
+          </div>
+
+          <div class="crypto-card">
+            <div class="crypto-card-top">
+              <div class="crypto-name">Zcash (ZEC)</div>
+              <button class="copy-btn" onclick="copyAddr('zec-addr')">Copy</button>
+            </div>
+            <canvas class="qr-canvas" data-addr="zcash:t1WsGAWHhadvzmxLxRcLA7EFwBgpLXHn4v6"></canvas>
+            <div class="crypto-addr" id="zec-addr">t1WsGAWHhadvzmxLxRcLA7EFwBgpLXHn4v6</div>
+          </div>
+
+          <div class="crypto-card">
+            <div class="crypto-card-top">
+              <div class="crypto-name">Lightning (BTC)</div>
+              <button class="copy-btn" onclick="copyAddr('ln-addr')">Copy</button>
+            </div>
+            <canvas class="qr-canvas" data-addr="lightning:LNURL1DP68GURN8GHJ7CTVDAHKVCNPVFHK7M3H9EKXUCNFW3EJUCM0D5HKCMN4WFK8QTE0GFFK6U28F5KHZR2D"></canvas>
+            <div class="crypto-addr" id="ln-addr">terminallyskill@aloofbaboon7.lnbits.com</div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <img src="icon-64.png" alt="TerminallySKILL" class="footer-logo-img">
+        <span>TerminallySKILL</span>
+        <span class="footer-copy">&copy; 2026 CryptoRaptor. All rights reserved.</span>
+      </div>
+      <div class="footer-links">
+        <a href="https://github.com/cryptopoly/TerminallySkill" target="_blank" rel="noopener" aria-label="GitHub">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+        </a>
+        <!-- SOCIAL LINKS: Replace # with your actual URLs -->
+        <a href="https://x.com/Cryptopoly" target="_blank" rel="noopener" aria-label="Twitter / X">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        </a>
+        <a href="https://www.youtube.com/@thecryptoraptor" target="_blank" rel="noopener" aria-label="YouTube">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814z"/><polygon fill="#0e0f11" points="9.545 15.568 15.818 12 9.545 8.432"/></svg>
+        </a>
+        <a href="mailto:info@terminallyskill.com" aria-label="Email">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.min.js"></script>
+  <script>
+    // Generate QR codes
+    document.querySelectorAll('.qr-canvas').forEach(canvas => {
+      const addr = canvas.dataset.addr;
+      const qr = qrcode(0, 'M');
+      qr.addData(addr);
+      qr.make();
+      const isLong = addr.length > 200;
+      const size = isLong ? 220 : 140;
+      const modules = qr.getModuleCount();
+      const cellSize = size / modules;
+      canvas.width = size;
+      canvas.height = size;
+      const ctx = canvas.getContext('2d');
+      ctx.fillStyle = '#1a1c24';
+      ctx.fillRect(0, 0, size, size);
+      ctx.fillStyle = '#06b6d4';
+      for (let r = 0; r < modules; r++) {
+        for (let c = 0; c < modules; c++) {
+          if (qr.isDark(r, c)) {
+            ctx.fillRect(c * cellSize, r * cellSize, cellSize + 0.5, cellSize + 0.5);
+          }
+        }
+      }
+    });
+
+    // Copy crypto address
+    function copyAddr(id) {
+      const el = document.getElementById(id);
+      const text = el.dataset.full || el.textContent;
+      navigator.clipboard.writeText(text).then(() => {
+        const card = el.closest('.crypto-card');
+        const btn = card.querySelector('.copy-btn');
+        btn.textContent = 'Copied!';
+        setTimeout(() => btn.textContent = 'Copy', 2000);
+      });
+    }
+
+    // Mobile nav toggle
+    document.querySelector('.nav-toggle').addEventListener('click', function() {
+      document.querySelector('.nav-links').classList.toggle('open');
+    });
+
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        e.preventDefault();
+        const target = document.querySelector(a.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          document.querySelector('.nav-links').classList.remove('open');
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
