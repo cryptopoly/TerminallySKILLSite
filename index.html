@@ -94,7 +94,7 @@
       <h1>A professional terminal workspace<br>for engineers who <span class="accent">move fast</span>.</h1>
       <p class="hero-sub">Visual command builder, workflow automation, AI-powered tools, SSH &amp; encrypted VNC remote desktop &mdash; all in one desktop app.</p>
       <div class="hero-actions">
-        <a href="https://github.com/cryptopoly/TerminallySkill/releases" class="btn btn-primary" target="_blank" rel="noopener">Download</a>
+        <button class="btn btn-primary" onclick="openDownloadModal()">Download</button>
         <a href="https://github.com/cryptopoly/TerminallySkill" class="btn btn-outline" target="_blank" rel="noopener">View on GitHub</a>
       </div>
       <div class="hero-platforms">Available for macOS, Linux &amp; Windows &mdash; Intel &amp; ARM</div>
@@ -210,7 +210,7 @@
         </div>
       </div>
       <div class="platform-cta">
-        <a href="https://github.com/cryptopoly/TerminallySkill/releases" class="btn btn-primary" target="_blank" rel="noopener">Download Latest Release</a>
+        <button class="btn btn-primary" onclick="openDownloadModal()">Download Latest Release</button>
       </div>
     </div>
   </section>
@@ -360,6 +360,50 @@
     </div>
   </footer>
 
+  <!-- DOWNLOAD MODAL -->
+  <div id="download-modal" class="modal-overlay" style="display:none" onclick="if(event.target===this)closeDownloadModal()">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h2>Download TerminallySKILL</h2>
+        <button class="modal-close" onclick="closeDownloadModal()" aria-label="Close">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p class="modal-detect" id="modal-detect-msg">Detecting your platform...</p>
+
+        <div id="modal-recommended" style="display:none">
+          <div class="modal-label">RECOMMENDED FOR YOU</div>
+          <div id="modal-recommended-list"></div>
+        </div>
+
+        <div id="modal-script-section" class="modal-script" style="display:none">
+          <div class="modal-script-header">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
+            <span>Quick Install</span>
+            <span class="modal-script-badge">macOS &amp; Linux</span>
+          </div>
+          <p class="modal-script-desc">One command installs everything automatically</p>
+          <div class="modal-code-block">
+            <code id="curl-cmd">curl -fsSL https://raw.githubusercontent.com/cryptopoly/TerminallySkill/main/install.sh | bash</code>
+            <button class="modal-code-copy" onclick="copyModalCode('curl-cmd')">Copy</button>
+          </div>
+          <div class="modal-code-alt">Also works with wget:</div>
+          <div class="modal-code-block">
+            <code id="wget-cmd">wget -qO- https://raw.githubusercontent.com/cryptopoly/TerminallySkill/main/install.sh | bash</code>
+            <button class="modal-code-copy" onclick="copyModalCode('wget-cmd')">Copy</button>
+          </div>
+        </div>
+
+        <button class="modal-toggle" id="modal-other-toggle" onclick="toggleOtherPlatforms()">
+          <span>Other platforms</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div id="modal-other-list" class="modal-other" style="display:none"></div>
+
+        <div class="modal-version" id="modal-version"></div>
+      </div>
+    </div>
+  </div>
+
   <script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.min.js"></script>
   <script>
     // Generate QR codes
@@ -385,6 +429,176 @@
           }
         }
       }
+    });
+
+    // ===== DOWNLOAD MODAL =====
+    const REPO = 'cryptopoly/TerminallySkill';
+    const RELEASES_URL = `https://api.github.com/repos/${REPO}/releases/latest`;
+    const RELEASES_PAGE = `https://github.com/${REPO}/releases`;
+
+    const PLATFORMS = {
+      'mac-arm64':   { label: 'macOS', sub: 'Apple Silicon (M1-M4)', icon: 'apple',   match: n => n.endsWith('.dmg') && /arm64/i.test(n) },
+      'mac-x64':     { label: 'macOS', sub: 'Intel',                icon: 'apple',   match: n => n.endsWith('.dmg') && /x64/i.test(n) },
+      'linux-x64':   { label: 'Linux', sub: 'x64 AppImage',        icon: 'linux',   match: n => n.endsWith('.AppImage') && /x64/i.test(n) },
+      'linux-arm64': { label: 'Linux', sub: 'ARM64 AppImage',       icon: 'linux',   match: n => n.endsWith('.AppImage') && /arm64/i.test(n) },
+      'linux-deb':   { label: 'Linux', sub: 'x64 .deb',            icon: 'linux',   match: n => n.endsWith('.deb') && /(?:amd64|x64)/i.test(n) && !/arm/i.test(n) },
+      'linux-deb-arm':{ label: 'Linux', sub: 'ARM64 .deb',         icon: 'linux',   match: n => n.endsWith('.deb') && /arm64/i.test(n) },
+      'win-x64':     { label: 'Windows', sub: 'x64 Installer',     icon: 'windows', match: n => n.endsWith('.exe') && /x64/i.test(n) && !n.endsWith('.blockmap') },
+      'win-arm64':   { label: 'Windows', sub: 'ARM64 Installer',   icon: 'windows', match: n => n.endsWith('.exe') && /arm64/i.test(n) && !n.endsWith('.blockmap') },
+    };
+
+    const ICONS = {
+      apple: '<svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>',
+      linux: '<svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M20.581 19.049l-7.577-11.619c-.106-.164-.235-.28-.393-.348-.158-.068-.316-.073-.474-.013l-2.382 1.236c-.089.044-.161.115-.217.213-.055.098-.057.201-.004.31l3.32 8.245-5.437-3.652c-.128-.082-.258-.108-.392-.078-.134.031-.248.106-.342.226l-1.984 2.528c-.074.096-.094.202-.058.318.036.116.109.2.218.252l10.648 5.072c.129.061.252.057.372-.014.12-.07.2-.172.24-.304.04-.133.014-.266-.077-.4l-.684-1.052 5.22-.99c.125-.025.222-.096.29-.212.068-.116.068-.233-.001-.35l-1.058-1.616c-.074-.113-.178-.188-.313-.224-.135-.036-.265-.018-.393.054l-3.305 1.87-1.97-4.892 5.685 1.303c.127.028.247.002.36-.078.113-.081.182-.192.207-.333l.192-1.056c.022-.129-.007-.253-.088-.372-.081-.119-.189-.196-.325-.232z"/></svg>',
+      windows: '<svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M0 3.449L9.75 2.1v9.451H0m10.949-9.602L24 0v11.4H10.949M0 12.6h9.75v9.451L0 20.699M10.949 12.6H24V24l-12.9-1.801"/></svg>',
+    };
+
+    let releaseData = null;
+
+    function detectPlatform() {
+      const ua = navigator.userAgent;
+      if (/Macintosh|MacIntel/i.test(ua)) return 'mac';
+      if (/Windows/i.test(ua)) return 'win';
+      if (/Linux/i.test(ua)) return /aarch64|arm64/i.test(ua) ? 'linux-arm' : 'linux';
+      return null;
+    }
+
+    async function detectMacArch() {
+      try {
+        if (navigator.userAgentData) {
+          const d = await navigator.userAgentData.getHighEntropyValues(['architecture']);
+          if (d.architecture === 'arm') return 'mac-arm64';
+          if (d.architecture === 'x86') return 'mac-x64';
+        }
+      } catch(e) {}
+      return null; // unknown, show both
+    }
+
+    async function fetchRelease() {
+      const cached = sessionStorage.getItem('ts-release');
+      if (cached) { releaseData = JSON.parse(cached); return releaseData; }
+      try {
+        const res = await fetch(RELEASES_URL);
+        if (!res.ok) throw new Error('API error');
+        releaseData = await res.json();
+        sessionStorage.setItem('ts-release', JSON.stringify(releaseData));
+        return releaseData;
+      } catch(e) {
+        return null;
+      }
+    }
+
+    function findAssetUrl(platformKey) {
+      if (!releaseData || !releaseData.assets) return null;
+      const p = PLATFORMS[platformKey];
+      const asset = releaseData.assets.find(a => p.match(a.name));
+      return asset ? asset.browser_download_url : null;
+    }
+
+    function makePlatformBtn(key, highlighted) {
+      const p = PLATFORMS[key];
+      const url = findAssetUrl(key);
+      const href = url || RELEASES_PAGE;
+      const cls = highlighted ? 'dl-btn dl-btn-recommended' : 'dl-btn';
+      return `<a href="${href}" class="${cls}" target="_blank" rel="noopener">
+        <span class="dl-btn-icon">${ICONS[p.icon]}</span>
+        <span class="dl-btn-info">
+          <span class="dl-btn-label">${p.label}</span>
+          <span class="dl-btn-sub">${p.sub}</span>
+        </span>
+        <svg class="dl-btn-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+      </a>`;
+    }
+
+    function toggleOtherPlatforms() {
+      const el = document.getElementById('modal-other-list');
+      const btn = document.getElementById('modal-other-toggle');
+      const open = el.style.display !== 'none';
+      el.style.display = open ? 'none' : 'block';
+      btn.classList.toggle('modal-toggle-open', !open);
+    }
+
+    async function openDownloadModal() {
+      const modal = document.getElementById('download-modal');
+      modal.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+
+      const detectMsg = document.getElementById('modal-detect-msg');
+      const recSection = document.getElementById('modal-recommended');
+      const recList = document.getElementById('modal-recommended-list');
+      const otherList = document.getElementById('modal-other-list');
+      const versionEl = document.getElementById('modal-version');
+
+      // Reset
+      detectMsg.textContent = 'Detecting your platform...';
+      recSection.style.display = 'none';
+      recList.innerHTML = '';
+      otherList.innerHTML = '';
+      otherList.style.display = 'none';
+      document.getElementById('modal-other-toggle').classList.remove('modal-toggle-open');
+      versionEl.innerHTML = '';
+
+      // Fetch release + detect platform in parallel
+      const [release, os] = await Promise.all([fetchRelease(), Promise.resolve(detectPlatform())]);
+
+      // Determine recommended keys
+      let recommended = [];
+      if (os === 'mac') {
+        const arch = await detectMacArch();
+        if (arch) {
+          recommended = [arch];
+        } else {
+          recommended = ['mac-arm64', 'mac-x64'];
+        }
+      } else if (os === 'win') {
+        recommended = ['win-x64'];
+      } else if (os === 'linux-arm') {
+        recommended = ['linux-arm64', 'linux-deb-arm'];
+      } else if (os === 'linux') {
+        recommended = ['linux-x64', 'linux-deb'];
+      }
+
+      if (recommended.length > 0) {
+        detectMsg.textContent = 'We detected your platform \u2014 your download is ready.';
+        recSection.style.display = 'block';
+        recList.innerHTML = recommended.map(k => makePlatformBtn(k, true)).join('');
+      } else {
+        detectMsg.textContent = 'Select your platform to download.';
+      }
+
+      // Other platforms = everything not in recommended
+      const otherKeys = Object.keys(PLATFORMS).filter(k => !recommended.includes(k));
+      otherList.innerHTML = otherKeys.map(k => makePlatformBtn(k, false)).join('');
+
+      // Show script install for macOS/Linux
+      const scriptSection = document.getElementById('modal-script-section');
+      scriptSection.style.display = (os === 'mac' || os === 'linux' || os === 'linux-arm' || !os) ? 'block' : 'none';
+
+      // Version info
+      if (release) {
+        versionEl.innerHTML = `<a href="${release.html_url}" target="_blank" rel="noopener">${release.tag_name}</a> &middot; <a href="${RELEASES_PAGE}" target="_blank" rel="noopener">All releases</a>`;
+      } else {
+        versionEl.innerHTML = `<a href="${RELEASES_PAGE}" target="_blank" rel="noopener">View all releases on GitHub</a>`;
+      }
+    }
+
+    function closeDownloadModal() {
+      document.getElementById('download-modal').style.display = 'none';
+      document.body.style.overflow = '';
+    }
+
+    function copyModalCode(id) {
+      const el = document.getElementById(id);
+      navigator.clipboard.writeText(el.textContent).then(() => {
+        const btn = el.nextElementSibling;
+        btn.textContent = 'Copied!';
+        setTimeout(() => btn.textContent = 'Copy', 2000);
+      });
+    }
+
+    // Close on Escape
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') closeDownloadModal();
     });
 
     // Copy crypto address
